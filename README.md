@@ -1,6 +1,6 @@
 # ⚙️ Business Automation & No-Code Portfolio
 
-Welcome to my portfolio focused on **Business Automation**, **AI Integration**, and **No-Code Workflows** using tools like **Make**, **n8n**, and **LLMs**.  
+Welcome to my portfolio focused on **Business Automation**, **AI Integration**, and **Low-Code Workflows** using tools like **Make**, **n8n**, and **LLMs**.  
 Here you'll find everything from simple flows to advanced multi-step automations — including several complete optimization packs.
 
 ---
