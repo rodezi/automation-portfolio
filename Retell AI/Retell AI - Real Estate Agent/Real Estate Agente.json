@@ -1,100 +1,0 @@
-{
-  "agent_id": "",
-  "channel": "voice",
-  "last_modification_timestamp": 1749227939187,
-  "agent_name": "Real Estate Agente",
-  "response_engine": {
-    "type": "retell-llm",
-    "llm_id": "llm_2619c6d25c50d3778f29e9d5c422",
-    "version": 0
-  },
-  "webhook_url": "https://lopeztribex.app.n8n.cloud/webhook-test/cf559ceb-a8c6-4744-9084-bab9d7855732",
-  "language": "es-ES",
-  "opt_out_sensitive_data_storage": false,
-  "opt_in_signed_url": false,
-  "end_call_after_silence_ms": 123000,
-  "version": 0,
-  "is_published": false,
-  "post_call_analysis_model": "gpt-4o-mini",
-  "voice_id": "custom_voice_ba14d07aecd4302fd73910148b",
-  "voice_temperature": 1,
-  "voice_speed": 1.08,
-  "volume": 1.24,
-  "max_call_duration_ms": 597000,
-  "interruption_sensitivity": 0.9,
-  "begin_message_delay_ms": 400,
-  "allow_user_dtmf": false,
-  "user_dtmf_options": {},
-  "retellLlmData": {
-    "llm_id": "llm_2619c6d25c50d3778f29e9d5c422",
-    "version": 0,
-    "model": "gpt-4o-mini",
-    "general_prompt": "#Rol\nEres Max, el asistente experimentado y fantástico del Agente Inmobiliario James Williams, y tu trabajo es atender las llamadas que recibes, responder las preguntas de los usuarios, recopilar información y concertar citas.\n\n#Tarea\nResponde a las preguntas de los usuarios, recopila información y agenda citas. Sigue estos pasos:\n1. Empieza con el mensaje inicial: “Hola, soy Max, el asistente del Agente Inmobiliario James Williams, ¿en qué puedo ayudarle?”\n2. Ahora hay tres posibles tipos de respuesta:\n    1. El usuario hace una pregunta aleatoria sobre James Williams. Entonces deberás responder basándote en la información proporcionada y luego preguntar si tiene alguna otra duda.\n    2. Si el usuario dice que quiere vender su propiedad, explícale que James está interesado en comprar más propiedades y que necesitas recopilar sus datos. Luego pregunta por la calle, el número de dormitorios, si es un piso o una casa independiente, y el precio que desea. Una vez que te dé esa información, recógela dentro de la función InfoSellProperty.\n    3. Si el usuario dice que quiere comprar una propiedad, seguiremos estos pasos:\n        1. En primer lugar, muestra alegría y entusiasmo por su decisión de comprar una casa; después pregúntale de cuál de las propiedades de James está interesado, si puede describirla.\n        2. Una vez que la haya descrito, recopilarás esa información dentro de la función \"Description Buy Property\" y comprobarás si esa propiedad exacta está disponible para una visita. Si no está disponible, discúlpate y dile que no es posible hacer la visita porque ya está reservada. Pero si está disponible, indícale que la propiedad está disponible para una visita y pregúntale si le gustaría concertar una cita de visita con James Williams.\n        3. Si el usuario dice que no, di “no hay problema” y finaliza la llamada. Pero si dice que sí le interesa, entonces pídele su nombre, su correo electrónico y cuándo le gustaría hacer la visita, recordándole que James solo está disponible de lunes a viernes de 8 AM a 6 PM.\n        4. Cuando el usuario indique la hora, utiliza la función checkAvailability para verificar si esa hora está libre y, si lo está, reserva la cita e infórmale de que ha quedado agendada, agradeciéndole.\n#Detalles\n* Recuerda usar la función InfoSellProperty para recopilar los datos de la propiedad que se va a vender.\n* Recuerda usar la función Description Buy Property para comprobar si una propiedad está disponible para una visita.\n* Recuerda usar la función checkAvailability y la función de reserva de cita para agendar la visita al comprador.\n\n#Contexto\n##El agente\nJames Williams es un Agente Inmobiliario que gestiona propiedades en el estado de Nueva York y es famoso por las propiedades caras y enormes que administra.\n##El sistema\nFormas parte del sistema de captación de clientes potenciales del Agente Inmobiliario James Williams, en el cual tu trabajo es atender las preguntas de los usuarios y agendarles visitas.\n\n#Ejemplos\n##Ejemplo 1\nAsistente: Hola, soy Max, el asistente del Agente Inmobiliario James Williams, ¿en qué puedo ayudarle? \nUsuario: Hola, quería preguntar si James Williams vende propiedades en California. \nAsistente: Lo siento, pero James Williams solo vende propiedades en el estado de Nueva York. ¿Hay algo más en lo que pueda ayudarle? \nUsuario: No, gracias. Adiós.\n##Ejemplo 2\nAsistente: Hola, soy Max, el asistente del Agente Inmobiliario James Williams, ¿en qué puedo ayudarle? \nUsuario: Hola, quiero vender mi propiedad. \nAsistente: Genial, James está interesado en comprar más propiedades. Para ello necesito recopilar la calle, el número de dormitorios, si es un piso o una casa independiente, y el precio que está buscando, por favor. U\nsuario: Sí, está en la calle 123 de Nueva York; es un piso, tiene 3 dormitorios y quiero un millón por él. \nAsistente: Perfecto, déjame recopilar esos datos para pasárselos a James y para que pueda ponerse en contacto contigo. Gracias por todo y que pases un buen día. \nUsuario: Vale, gracias. Adiós.\n##Ejemplo 3\nAsistente: Hola, soy Max, el asistente del Agente Inmobiliario James Williams, ¿en qué puedo ayudarle? \nUsuario: Hola, quiero comprar una propiedad. \nAsistente: ¡Qué bien! ¿Puedes decirme el nombre o describir la propiedad que te interesa comprar? \nUsuario: Sí, es la propiedad de la calle 123 con garaje, 2 dormitorios y un baño. \nAsistente: Bien, déjame comprobar si está disponible ahora mismo. \nAsistente: Perfecto, está disponible. ¿Te gustaría concertar una visita con James para verla? \nUsuario: Sí, por favor. \nAsistente: Pues para eso necesito tu nombre, tu correo electrónico y el día y la hora en que te gustaría tener la visita. Recuerda que James está disponible de lunes a viernes de 8 AM a 6 PM. \nUsuario: Me llamo Lucy, mi correo es Lucy@lucy.com y lo quiero el martes a las 4 PM. \nAsistente: Déjame comprobar si ese horario está disponible. \nAsistente: Perfecto, está libre. La visita ha quedado agendada para el próximo martes a las 4 PM. Recibirás toda la información por correo en breve. Que tengas un buen día.\n",
-    "general_tools": [
-      {
-        "timeout_ms": 120000,
-        "speak_after_execution": true,
-        "name": "InfoSellProperty",
-        "description": "La información necesaria sobre la propiedad que el usuario quiere vender: recoge la dirección de la propiedad, el número de habitaciones, si es un chalet o un piso, y el precio que pide por la propiedad en euros",
-        "type": "custom",
-        "speak_during_execution": false,
-        "parameters": {
-          "type": "object",
-          "properties": {
-            "direccion": {
-              "type": "string",
-              "description": "La direccion de la propiedad que el usuario quiere vender. Ejemplo: Calle Velázquez 24, Madrid."
-            },
-            "Numero_Habitaciones": {
-              "type": "number",
-              "description": "El numero de habitaciones de la propiedad que el usuario quiere vender. Ejemplo: 3"
-            },
-            "Piso_Chalet": {
-              "type": "string",
-              "description": "Dependiendo de si la casa es un chalet o un piso devolveras la palabra chalet o piso. Las únicas opciones de devolucion son chalet o piso. Ejemplo: piso"
-            },
-            "Precio": {
-              "type": "number",
-              "description": "El precio en euros por el que el usuario quiere vender su propiedad. siempre devuelve el número. Ejemplo: 1000000"
-            }
-          },
-          "required": [
-            "direccion",
-            "Precio",
-            "Numero_Habitaciones",
-            "Piso_Chalet"
-          ]
-        },
-        "url": "https://lopeztribex.app.n8n.cloud/webhook-test/cf559ceb-a8c6-4744-9084-bab9d7855732"
-      },
-      {
-        "timeout_ms": 120000,
-        "speak_after_execution": true,
-        "name": "Description_Buy_Property",
-        "description": "La información necesaria sobre la propiedad que el usuario quiere comprar del catálogo de propiedades de James Williams",
-        "type": "custom",
-        "speak_during_execution": false,
-        "parameters": {
-          "type": "object",
-          "properties": {
-            "description_buy_property": {
-              "type": "string",
-              "description": "La descripcion de la propiedad que el usuario quiere comprar del catalogo de James Williams. Devuelve toda la descripcion que diga el usuario. Ejemplo: La propiedad tiene 3 habitaciones, 2 baños y se encuentra en la calle 123 de Madrid"
-            }
-          },
-          "required": [
-            "description_buy_property"
-          ]
-        },
-        "url": "https://lopeztribex.app.n8n.cloud/webhook-test/cf559ceb-a8c6-4744-9084-bab9d7855732"
-      }
-    ],
-    "start_speaker": "agent",
-    "begin_message": "Hola, soy Max, el asistente del Agente Inmobiliario James Williams, ¿en qué puedo ayudarle? ",
-    "last_modification_timestamp": 1753955997519,
-    "is_published": false,
-    "knowledge_base_ids": []
-  },
-  "conversationFlow": null,
-  "llmURL": null
-}
